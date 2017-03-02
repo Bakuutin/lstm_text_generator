@@ -3,3 +3,4 @@
 config.py
 !.gitignore
 !requirements.txt
+!readme.md
