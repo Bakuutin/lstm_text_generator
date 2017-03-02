@@ -1,0 +1,3 @@
+tensorflow ~= 1.0.0
+telepot ~= 10.4
+language-check ~= 0.8
