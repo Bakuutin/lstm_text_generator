@@ -4,7 +4,7 @@ import os
 import numpy as np
 import tensorflow as tf
 
-from config import TEXT_FILE, CHECKPOINT_DIR, VOCAB_PATH, VEC_VOCAB_PATH
+from config import TEXT_PATH, CHECKPOINT_DIR, VOCAB_PATH, VEC_VOCAB_PATH
 from utils import text_to_matrix, get_last_step
 from lstm import LSTMNetwork
 
@@ -13,7 +13,7 @@ logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 
 if not os.path.exists(VOCAB_PATH) or not os.path.exists(VEC_VOCAB_PATH):
-    with open(TEXT_FILE, 'r') as f:
+    with open(TEXT_PATH, 'r') as f:
         data = f.read().lower()
     vocab = sorted(set(data))
     vec_vocab = text_to_matrix(data, vocab)

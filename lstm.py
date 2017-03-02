@@ -21,7 +21,7 @@ class LSTMNetwork:
             )
 
             self.lstm = MultiRNNCell(
-                [BasicLSTMCell(LSTM_SIZE, forget_bias=1.0, state_is_tuple=STATE_IS_TUPLE)] * NUM_LAYERS,
+                [BasicLSTMCell(LSTM_SIZE, forget_bias=1.0, state_is_tuple=STATE_IS_TUPLE) for _ in range(NUM_LAYERS)],
                 state_is_tuple=STATE_IS_TUPLE
             )
 

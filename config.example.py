@@ -4,7 +4,7 @@ VEC_VOCAB_PATH = 'data/vec_vocab.npy'
 CHECKPOINT_DIR = 'data/checkpoints'
 CHECKPOINT_PATHS = 'data/checkpoints/checkpoint.ckpt'
 
-TEXT_FILE = 'data/new_improved_rationality.txt'
+TEXT_PATH = 'data/rationality.txt'
 
 
 LSTM_SIZE = 256  # 128
