@@ -60,7 +60,7 @@ class NeuroBot(telepot.Bot):
     def prepare_for_lstm(text):
         text = text.strip()
 
-        if not text.endswith(('?', '.', '!')):
+        if text and text[~0] not in {'?', '.', '!'}:
             text += '?'
 
         if text.startswith('/'):
