@@ -22,3 +22,11 @@ LEN_TEST_TEXT = 5
 
 BOT_TOKEN = '123'
 BOT_LOG_CHANNEL_ID = -123
+
+NOT_A_TEXT_REPLIES = [
+    'Is it a question?',
+    "I don't understand",
+    '👀',
+    '🙄',
+    '🙈'
+]

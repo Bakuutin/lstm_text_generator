@@ -2,16 +2,11 @@
 
 import numpy as np
 
-from config import TEST_PREFIX, LEN_TEST_TEXT
+from config import TEST_PREFIX, LEN_TEST_TEXT, SENTENCE_ENDINGS
 
 from global_variables import vocab, net
 
 from utils import text_to_matrix
-
-import language_check
-
-
-lang_tool = language_check.LanguageTool('en-US')
 
 
 class SentenceGenerator:
@@ -31,15 +26,15 @@ class SentenceGenerator:
         while len(text) < 5000:
             element = np.random.choice(range(len(vocab)), p=self.out)
             text += vocab[element]
-            if len(text) > 3 and text[-2:] in ('. ', '\n\n'):
-                break
+
+            if text.endswith(SENTENCE_ENDINGS):
+                if len(text) > 5:
+                    break
+                else:
+                    text = ''
             self.out = net.run_step(text_to_matrix(vocab[element], vocab))
 
-        return self.post_process(text)
-
-    def post_process(self, text):
-        text = text.strip().replace(' i ', ' I ')
-        return language_check.correct(text, lang_tool.check(text))
+        return text
 
 
 if __name__ == '__main__':

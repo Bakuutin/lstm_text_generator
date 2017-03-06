@@ -15,7 +15,8 @@ logging.getLogger('tensorflow').setLevel(logging.ERROR)
 if not os.path.exists(VOCAB_PATH) or not os.path.exists(VEC_VOCAB_PATH):
     with open(TEXT_PATH, 'r') as f:
         data = f.read().lower()
-    vocab = sorted(set(data))
+    vocab_set = set(data)
+    vocab = sorted(vocab_set)
     vec_vocab = text_to_matrix(data, vocab)
 
     np.save(VOCAB_PATH, vocab)
@@ -23,6 +24,7 @@ if not os.path.exists(VOCAB_PATH) or not os.path.exists(VEC_VOCAB_PATH):
 
 else:
     vocab = list(np.load(VOCAB_PATH))
+    vocab_set = set(vocab)
     vec_vocab = np.load(VEC_VOCAB_PATH)
 
 
