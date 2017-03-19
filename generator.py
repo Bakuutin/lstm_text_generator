@@ -2,7 +2,9 @@
 
 import numpy as np
 
-from config import TEST_PREFIX, LEN_TEST_TEXT, SENTENCE_ENDINGS
+from config import (
+    TEST_PREFIX, SAMPLE_SENTENCES_NUMBER, SENTENCE_ENDINGS, SENTENCE_MAX_LEN, SENTENCE_MIN_LEN
+)
 
 from global_variables import vocab, net
 
@@ -41,11 +43,11 @@ class SentenceGenerator:
     def __next__(self):
         text = ''
 
-        while len(text) < 5000:
+        while len(text.strip()) < SENTENCE_MAX_LEN:
             text += next(self.char_generator)
 
             if text.endswith(SENTENCE_ENDINGS):
-                if len(text.strip()) > 5:
+                if len(text.strip()) > SENTENCE_MIN_LEN:
                     break
                 else:
                     text = ''
@@ -54,5 +56,5 @@ class SentenceGenerator:
 
 
 if __name__ == '__main__':
-    s = SentenceGenerator()
-    print('\n\n'.join(next(s) for i in range(LEN_TEST_TEXT)))
+    generator = SentenceGenerator()
+    print('\n\n'.join(next(generator) for i in range(SAMPLE_SENTENCES_NUMBER)))
